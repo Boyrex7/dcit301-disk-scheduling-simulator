@@ -52,6 +52,7 @@ Lower total head movement indicates better performance since seek time is propor
 
 Testing and validation files are located in the `testing/` directory.
 
+---
 
 ## How to Run the Simulator
 
@@ -59,3 +60,19 @@ Ensure **Python 3** is installed, then run the following command:
 
 ```bash
 python disk_simulator.py
+
+---
+
+## Course Information
+
+Course: DCIT301 – Operating Systems
+
+Institution: University of Ghana
+
+Group: Group 13
+
+---
+
+## References
+
+Disk scheduling concepts and algorithms are based on standard Operating Systems literature, including the course textbook (Operating System Concepts by Abraham Silberschatz, Peter Baer Galvin and Greg Gagne)
