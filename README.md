@@ -87,3 +87,40 @@ Group: Group 13
 ## References
 
 Disk scheduling concepts and algorithms are based on standard Operating Systems literature, including the course textbook (Operating System Concepts by Abraham Silberschatz, Peter Baer Galvin and Greg Gagne)
+
+
+=====================================================================
+## How to Run the GUI
+
+1.  **Create a virtual environment:**
+    ```bash
+    python -m venv env
+    ```
+
+2.  **Activate the virtual environment:**
+
+    *   **On Windows (PowerShell):**
+        ```powershell
+        .\env\Scripts\Activate.ps1
+        ```
+        > **Note:** If you encounter an error, you may need to set the execution policy by running this command in PowerShell:
+        > `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+    *   **On Windows (Command Prompt):**
+        ```cmd
+        env\Scripts\activate.bat
+        ```
+
+    *   **On macOS and Linux:**
+        ```bash
+        source env/bin/activate
+        ```
+
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Run the GUI application:**
+    ```bash
+    python disk_simulator_gui.py
