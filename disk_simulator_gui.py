@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import disk_simulator as ds
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class DiskSchedulerGUI:
     def __init__(self, root):
@@ -83,12 +87,27 @@ class DiskSchedulerGUI:
         output_frame = ttk.LabelFrame(main_frame, text="Results", padding=10)
         output_frame.pack(fill="both", expand=True)
 
-        self.output_text = tk.Text(output_frame, height=15, font=("Consolas", 10), state="normal", wrap="none", padx=10, pady=10)
+        # Use PanedWindow to split Text Log and Graph
+        paned = ttk.PanedWindow(output_frame, orient=tk.HORIZONTAL)
+        paned.pack(fill="both", expand=True)
+
+        # Left: Text Log
+        text_frame = ttk.Frame(paned)
+        self.output_text = tk.Text(text_frame, height=15, width=40, font=("Consolas", 10), state="normal", wrap="none", padx=10, pady=10)
         self.output_text.pack(side="left", fill="both", expand=True)
         
-        scrollbar = ttk.Scrollbar(output_frame, command=self.output_text.yview)
+        scrollbar = ttk.Scrollbar(text_frame, command=self.output_text.yview)
         scrollbar.pack(side="right", fill="y")
         self.output_text['yscrollcommand'] = scrollbar.set
+        paned.add(text_frame, weight=1)
+
+        # Right: Matplotlib Graph
+        graph_frame = ttk.Frame(paned)
+        self.fig = Figure(figsize=(5, 4), dpi=100)
+        self.ax = self.fig.add_subplot(111)
+        self.canvas = FigureCanvasTkAgg(self.fig, master=graph_frame)
+        self.canvas.get_tk_widget().pack(fill="both", expand=True)
+        paned.add(graph_frame, weight=2)
 
         # Configure text tags for styling
         self.output_text.tag_configure("title", foreground="#0078d7", font=("Consolas", 11, "bold"))
@@ -111,6 +130,8 @@ class DiskSchedulerGUI:
 
     def clear_output(self):
         self.output_text.delete(1.0, tk.END)
+        self.ax.clear()
+        self.canvas.draw()
 
     def run_single(self, algo):
         data = self.get_inputs()
@@ -135,6 +156,7 @@ class DiskSchedulerGUI:
             dist = abs(path[i+1] - path[i])
             self.output_text.insert(tk.END, f"{i+1:>4} | {path[i]:>4} -> {path[i+1]:<4} | {dist:>8}\n")
         self.output_text.see(tk.END)
+        self.plot_path(path, algo, disk_min, disk_max)
 
     def run_comparison(self):
         data = self.get_inputs()
@@ -155,6 +177,40 @@ class DiskSchedulerGUI:
         for name, move in results:
             self.output_text.insert(tk.END, f"{name:6} : {move} cylinders\n")
         self.output_text.see(tk.END)
+        self.plot_comparison(results)
+
+    def plot_path(self, path, algo, disk_min, disk_max):
+        self.ax.clear()
+        steps = list(range(len(path)))
+        
+        # Plot path: X=Cylinder, Y=Step (inverted to show time progression down)
+        self.ax.plot(path, steps, marker='o', linestyle='-', color='#0078d7', markersize=5)
+        
+        self.ax.set_title(f"{algo} Head Movement Path")
+        self.ax.set_xlabel("Cylinder Number")
+        self.ax.set_ylabel("Step Sequence")
+        self.ax.set_xlim(disk_min, disk_max)
+        self.ax.invert_yaxis()  # Time goes down
+        self.ax.grid(True, linestyle='--', alpha=0.6)
+        
+        self.fig.tight_layout()
+        self.canvas.draw()
+
+    def plot_comparison(self, results):
+        self.ax.clear()
+        algos = [r[0] for r in results]
+        moves = [r[1] for r in results]
+        
+        bars = self.ax.bar(algos, moves, color='#0078d7')
+        self.ax.set_title("Total Head Movement Comparison")
+        self.ax.set_ylabel("Total Cylinders Moved")
+        
+        for bar in bars:
+            height = bar.get_height()
+            self.ax.text(bar.get_x() + bar.get_width()/2., height, f'{int(height)}', ha='center', va='bottom')
+        
+        self.fig.tight_layout()
+        self.canvas.draw()
 
 if __name__ == "__main__":
     root = tk.Tk()
