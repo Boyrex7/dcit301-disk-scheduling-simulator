@@ -59,15 +59,26 @@ Testing and validation files are located in the `testing/` directory.
 Ensure **Python 3** is installed, then run the following command:
 
 ```bash
-python disk_simulator.py
+python disk_simulator.py 
+
+Follow the on-screen prompts to:
+
+1. Enter disk configuration details
+
+2. Provide a disk request queue
+
+3. Select a disk scheduling algorithm
+
+4. View disk head movement and performance results
+```
 
 ---
 
 ## Course Information
 
-Course: DCIT301 – Operating Systems
+Course: **DCIT301 – Operating Systems**
 
-Institution: University of Ghana
+Institution: **University of Ghana**
 
 Group: Group 13
 
