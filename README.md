@@ -124,3 +124,18 @@ Disk scheduling concepts and algorithms are based on standard Operating Systems 
 4.  **Run the GUI application:**
     ```bash
     python disk_simulator_gui.py
+
+
+  
+5.  **GROUP MEMBERS:**
+    ```BASH
+    
+            | ID        | Name                                 | Roles             |
+            |-----------|--------------------------------------|-------------------|
+            | 22039152  | Asante Opuni Frimpong                | ----------------  |
+            | 22038956  | Mubarak Iddris                       | ----------------  |
+            | 22223762  | Ashley Rexford Seth                  | ----------------  |
+            | 22019132  | Felicity Dzidzorli Zanu-Tsikata      | ----------------  |
+            | 22245133  | Donbeinaa Juliana Dome-im            | ----------------  |
+            | 22188494  | Ansah Larbi Edward Junior            | ----------------  |
+            | 22019894  | Fransis Akyeaw Amposah               | ----------------  |
