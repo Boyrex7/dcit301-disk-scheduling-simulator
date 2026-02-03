@@ -137,5 +137,5 @@ Disk scheduling concepts and algorithms are based on standard Operating Systems 
             | 22223762  | Ashley Rexford Seth                  | ----------------  |
             | 22019132  | Felicity Dzidzorli Zanu-Tsikata      | ----------------  |
             | 22245133  | Donbeinaa Juliana Dome-im            | ----------------  |
-            | 22188494  | Ansah Larbi Edward Junior            | ----------------  |
+            | 22169253  | Ansah Larbi Edward Junior            | ----------------  |
             | 22019894  | Fransis Akyeaw Amposah               | ----------------  |
