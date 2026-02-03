@@ -139,3 +139,6 @@ Disk scheduling concepts and algorithms are based on standard Operating Systems 
             | 22245133  | Donbeinaa Juliana Dome-im            | ----------------  |
             | 22169253  | Ansah Larbi Edward Junior            | ----------------  |
             | 22019894  | Fransis Akyeaw Amposah               | ----------------  |
+            | 22245133  | Gyasi Amos Kwadwo                    | ----------------  |
+    
+     
